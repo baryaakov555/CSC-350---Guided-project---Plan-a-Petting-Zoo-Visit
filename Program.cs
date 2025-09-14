@@ -6,13 +6,20 @@ string[] pettingZoo = {
     "ostriches", "pigs", "ponies", "rabbits", "sheep", "tortoises",
 };
 
-RandomizeAnimals();
+PlanSchoolVisit("School A");
+PlanSchoolVisit("School B", 3);
+PlanSchoolVisit("School C", 2);
 
-string[,] group = AssignGroup();
+void PlanSchoolVisit(string schoolName, int groups = 6)
+{
+    RandomizeAnimals();
 
-Console.WriteLine("School A");
+    string[,] group = AssignGroup(groups);
 
-// PrintGroup(group);
+    Console.WriteLine(schoolName);
+
+    PrintGroup(group);
+}
 
 void RandomizeAnimals()
 {
@@ -42,4 +49,19 @@ String[,] AssignGroup(int groups = 6)
     }
 
     return result;
+}
+
+void PrintGroup(string[,] group)
+{
+    for (int i = 0; i < group.GetLength(0); i++)
+    {
+        Console.Write($"Group {i + 1}: ");
+
+        for (int j = 0; j < group.GetLength(1); j++)
+        {
+            Console.Write($"{group[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
 }
